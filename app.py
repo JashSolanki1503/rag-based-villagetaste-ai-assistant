@@ -540,7 +540,7 @@ with st.sidebar:
 # 11. MAIN AREA — Banner image
 # ==============================================================================
 
-st.image(banner_image, use_container_width=True)
+st.image(banner_image, use_column_width=True)
 
 
 # ==============================================================================
