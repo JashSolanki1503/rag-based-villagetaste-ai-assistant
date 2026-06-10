@@ -1,27 +1,3 @@
-"""
-╔══════════════════════════════════════════════════════════════╗
-║      VillageTaste Foods AI Assistant — Streamlit App         ║
-║                  Run: streamlit run app.py                   ║
-╚══════════════════════════════════════════════════════════════╝
-
-BUG FIXES APPLIED (v2):
-  1. Black box behind bot responses       → removed conflicting markdown card backgrounds
-  2. Both messages left-aligned           → user bubbles float RIGHT, bot bubbles float LEFT
-  3. Chat input not clearing after send   → switched to st.chat_input() (auto-clears)
-  4. Pot image displacing send button     → moved pot image to sidebar footer
-  5. Message appears below input instead  → single authoritative render path via container
-     of inside chat area
-  6. Duplicate message rendering          → removed st.chat_message() wrappers that caused
-                                            Streamlit to inject extra dark card boxes
-
-PATCH v3 (two targeted changes only — nothing else touched):
-  FIX A  → Dark/black strip behind the chat input box → all stBottom* and
-            stChatFloatingInputContainer selectors now locked to #FDFBF7
-            plus the inner textarea wrapper background forced to match.
-  FIX B  → Pot image restored to the RIGHT side of the chat input row,
-            exactly as it was in the original design.
-"""
-
 # ==============================================================================
 # 1. IMPORTS
 # ==============================================================================
@@ -60,22 +36,6 @@ pot_image    = Image.open("assets/pot.png")
 
 # ==============================================================================
 # 4. CUSTOM CSS
-#
-#    Root fixes explained:
-#
-#    BLACK BOX BUG
-#      Streamlit's [data-testid="stChatMessage"] renders a dark card by default.
-#      We override it to transparent + no border. We also hide Streamlit's built-in
-#      avatar column so our custom avatar HTML takes over.
-#
-#    ALIGNMENT BUG
-#      .bubble-row.user-row  uses flex-direction:row-reverse → bubble sits on the RIGHT.
-#      .bubble-row.bot-row   uses flex-direction:row         → bubble sits on the LEFT.
-#
-#    BACKGROUND STRIP BUG  ← FIX A (v3 patch)
-#      The dark bottom strip comes from Streamlit's stBottom* containers and the
-#      floating input container. Every one of them is now explicitly forced to the
-#      warm-cream colour #FDFBF7, including the inner div that wraps the textarea.
 # ==============================================================================
 
 CUSTOM_CSS = """
