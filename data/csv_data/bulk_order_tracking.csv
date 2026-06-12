@@ -1,0 +1,8 @@
+Order ID,Customer Name,Event Type,Products Ordered,Quantity,Order Value (INR),Delivery City,Delivery Status,Payment Status
+ORD5001,Patel Family,Wedding,Besan Ladoo Gift Boxes,120,48000,Ahmedabad,Delivered,Paid
+ORD5002,Sharma Traders,Corporate Festival Gifts,Snack Combo Packs,200,72000,Surat,Shipped,Advance Paid
+ORD5003,Joshi Community Hall,Religious Event,Khakhra and Sev Packs,150,39000,Vadodara,Processing,Pending
+ORD5004,Mehta Family,Navratri Event,Dry Fruit Barfi Boxes,80,52000,Rajkot,Delivered,Paid
+ORD5005,Royal Weddings,Wedding Catering,Mixed Sweet Hampers,250,125000,Mumbai,Preparing,Advance Paid
+ORD5006,GreenLeaf Pvt Ltd,Corporate Order,Festival Gift Hampers,300,180000,Pune,Processing,Pending
+ORD5007,Village Youth Club,Community Festival,Chakli and Mathri Packs,90,22000,Bhavnagar,Shipped,Paid

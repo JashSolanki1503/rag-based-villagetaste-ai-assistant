@@ -5,10 +5,14 @@
 import streamlit as st
 from PIL import Image
 import markdown as md_lib          # converts LLM markdown text → safe HTML
+import os
 
 # Backend RAG pipeline — your existing modules, untouched
 from pipline.rag_pipline_manager import RAGPipelineManager
 from retrieval.retriever_manager import RetreiverManager
+
+from ingestion.data_loader_manager import DataLoaderManager
+from ingestion.data_chuncking_manager import DataChunkingManager
 from ingestion.embedding_manager import EmbeddingManager
 from ingestion.vector_store_manager import VectorStoreManager
 
@@ -573,3 +577,74 @@ if user_input:
 
     with chat_area:
         render_bubble("assistant", bot_reply)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@st.cache_resource
+def load_rag_pipeline() -> RAGPipelineManager:
+    """
+    Constructs and returns the full RAG pipeline.
+    Automatically initializes the vector database if it doesn't exist.
+    """
+
+    # Database location path  
+    db_path = "data/vector_store"
+
+    # 1. CHECK FIRST: Does the database folder exist before we initialize anything?
+    needs_build = not os.path.exists(db_path)
+
+    # 2. INITIALIZE MANAGERS
+    embedding_manager    = EmbeddingManager()
+    vector_store_manager = VectorStoreManager(persist_directory=db_path)
+    
+    # 3. AUTOMATED INGESTION CHECK (Only runs if db_path was missing)
+    if needs_build:
+
+        # here spinner is used to display temporary message when a block of code runs inside the background
+        with st.spinner("🚀 First-time setup: Building VillageTaste database from raw PDFs..."):
+            
+            # Initialize some other manager for the ingestion 
+            data_loader_manager = DataLoaderManager()
+            data_chuncking_manager = DataChunkingManager()
+            
+            documents = data_loader_manager.load_all_documents()
+
+            if documents:
+                chunck_documents = data_chuncking_manager.get_chunk_data(
+                                documents["pdf_documents"],
+                                documents["docs_documents"],
+                                documents["texts_documents"],
+                                documents["sheets_documents"],
+                        )
+                chunck_embeddings = embedding_manager.generate_embeddings(chunck_documents)
+                vector_store_manager.add_documents(chunck_documents, chunck_embeddings)
+
+                print("✅ Vector database successfully built on the server!")
+
+            else:
+                print("⚠️ No PDFs found in data/pdfs/ to build the database!")
+
+    # 4. NORMAL PIPELINE INITIALIZATION
+    retriever_manager    = RetreiverManager(embedding_manager, vector_store_manager)
+    pipeline             = RAGPipelineManager(retriever_manager)
+    
+    return pipeline
+
+# problem in embedding manager implemetn check for the 
+# first extract only page_contents inside the chunck_documents 
+        # if type(texts) == "str":
+        #     texts = [doc.page_content for doc in texts]
+        
+        # embeddings = self.model.encode(texts, show_progress_bar = True)

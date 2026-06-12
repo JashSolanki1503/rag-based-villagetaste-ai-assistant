@@ -1,0 +1,19 @@
+Product ID,Product Name,Category,Price (INR),Stock Status,Spice Level,Shelf Life,Packaging,Customer Rating
+P101,Mango Pickle,Pickle,180,Available,Medium,8 Months,500g Jar,4.8
+P102,Lemon Pickle,Pickle,160,Available,Medium,7 Months,500g Jar,4.6
+P103,Garlic Pickle,Pickle,210,Limited Stock,High,6 Months,500g Jar,4.7
+P104,Mixed Vegetable Pickle,Pickle,190,Available,Medium,6 Months,1kg Jar,4.5
+P105,Masala Khakhra,Snack,120,Available,Mild,45 Days,250g Pack,4.4
+P106,Handcrafted Chakli,Snack,140,Available,Medium,45 Days,300g Pack,4.7
+P107,Traditional Sev,Snack,110,Available,Medium,30 Days,250g Pack,4.3
+P108,Mathri,Snack,130,Low Stock,Mild,40 Days,300g Pack,4.4
+P109,Bhakarwadi,Snack,150,Available,Medium,35 Days,250g Pack,4.6
+P110,Besan Ladoo,Sweet,240,Available,,20 Days,500g Box,4.9
+P111,Dry Fruit Barfi,Sweet,380,Limited Stock,,15 Days,500g Box,4.8
+P112,Coconut Ladoo,Sweet,220,Available,,18 Days,400g Box,4.5
+P113,Jaggery Chikki,Sweet,170,Available,,60 Days,350g Pack,4.6
+P114,Ready-to-Cook Khichdi Mix,Ready-to-Cook,200,Available,Mild,5 Months,1kg Pack,4.5
+P115,Traditional Thepla Pack,Ready-to-Eat,160,Available,Mild,7 Days,10 Pieces Pack,4.7
+P116,Village Masala Rice Mix,Ready-to-Cook,210,Available,Medium,4 Months,1kg Pack,4.4
+P117,Homemade Garam Masala,Spice,140,Available,High,10 Months,200g Packet,4.8
+P118,Tea Masala Powder,Spice,90,Available,Mild,9 Months,100g Packet,4.5

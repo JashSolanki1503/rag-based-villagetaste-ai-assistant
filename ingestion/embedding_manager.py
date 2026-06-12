@@ -15,7 +15,8 @@ class EmbeddingManager:
     def generate_embeddings(self, texts):
 
         # first extract only page_contents inside the chunck_documents 
-        # texts = [doc.page_content for doc in texts]
+        if type(texts) == "str":
+            texts = [doc.page_content for doc in texts]
         
         embeddings = self.model.encode(texts, show_progress_bar = True)
 
